@@ -19,7 +19,7 @@ public class PaymentController {
     @Autowired
     private UserRepo userRepo;
 
-    @CrossOrigin(origins = "http://localhost:63636")
+
     @PostMapping("/create-order")
     public String createOrder(@RequestParam int amount, @RequestParam String currency) {
         try {

@@ -1,5 +1,7 @@
 package com.karan.property.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.*;
 import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
@@ -18,7 +20,8 @@ import java.util.List;
 public class User {
 
     @Id
-    private ObjectId id;
+    @JsonIgnore
+    private ObjectId objectId;
 
     @Indexed(unique = true)
     @NonNull
@@ -33,5 +36,17 @@ public class User {
 
     @DBRef
     private List<Colony> colonies = new ArrayList<>();
+
+    @DBRef
+    private List<Customer> customers = new ArrayList<>();
+
+    @JsonProperty("id") // Rename the property to "id" in the JSON response
+    public String getId() {
+        return objectId != null ? objectId.toHexString() : null; // Convert ObjectId to a string
+    }
+
+    public void setId(ObjectId objectId) {
+        this.objectId = objectId;
+    }
 }
 

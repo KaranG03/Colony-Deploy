@@ -51,6 +51,7 @@ public class Public {
         return "ok";
     }
 
+
     @PostMapping("/sign-up")
     public ResponseEntity<?> signUp(@RequestBody User user){
         userService.saveNewUser(user);
@@ -73,15 +74,15 @@ public class Public {
             String jwt = jwtUtil.generateToken(userDetails.getUsername());
 
             // Fetch all colonies (you can customize this logic if you want to return colonies specific to the user)
-            List<Colony> colonies = colonyService.getAllColoniesOfUser(user); // Replace with your logic to get colonies
-
-            // Create a response object containing both JWT and colonies
-            Map<String, Object> response = new HashMap<>();
-            response.put("token", jwt);
-            response.put("colonies", colonies);
+//            List<Colony> colonies = colonyService.getAllColoniesOfUser(user); // Replace with your logic to get colonies
+//
+//            // Create a response object containing both JWT and colonies
+//            Map<String, Object> response = new HashMap<>();
+//            response.put("token", jwt);
+//            response.put("colonies", colonies);
 
             // Return response with status OK
-            return new ResponseEntity<>(response, HttpStatus.OK);
+            return new ResponseEntity<>(jwt, HttpStatus.OK);
         } catch (Exception e) {
             log.error("Exception occurred while createAuthenticationToken", e);
             return new ResponseEntity<>("Incorrect username or password", HttpStatus.BAD_REQUEST);

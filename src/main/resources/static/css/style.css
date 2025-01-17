@@ -1,0 +1,285 @@
+ body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      background-color: #f4f4f4;
+    }
+    .hidden {
+      display: none;
+    }
+    form, .colonies-container, .colony-details, .plots-container {
+      border: 1px solid #ccc;
+      padding: 20px;
+      background: #fff;
+      margin: 10px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      width: 80%;
+    }
+    input {
+      display: block;
+      margin: 10px 0;
+      padding: 10px;
+      width: 100%;
+    }
+    button, .link {
+      padding: 10px 20px;
+      background-color: #007BFF;
+      color: white;
+      border: none;
+      cursor: pointer;
+      text-align: center;
+      text-decoration: none;
+      margin-top: 10px;
+    }
+    button:hover, .link:hover {
+      background-color: #0056b3;
+    }
+    .link {
+      background: none;
+      color: #007BFF;
+      border: none;
+      text-decoration: underline;
+    }
+    .colonies-list {
+      list-style-type: none;
+      padding: 0;
+    }
+    .colonies-list li {
+      margin: 5px 0;
+      padding: 10px;
+      background-color: #e0e0e0;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    .plots-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+    .plot-box {
+      border: 1px solid #ccc;
+      padding: 10px;
+      background-color: #f9f9f9;
+      border-radius: 4px;
+      width: calc(33.33% - 10px);
+      text-align: center;
+    }
+  .plot-box.sold {
+      background-color: #ccffcc; /* Green for sold plots */
+  }
+
+  .plot-box.available {
+      background-color: #ffcccc; /* Red for unsold plots */
+  }
+
+
+  .plot-edit-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .modal-content {
+    background: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    width: 400px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+
+  .modal-content label {
+    display: block;
+    margin: 10px 0 5px;
+  }
+
+  .modal-content input,
+  .modal-content textarea,
+  .modal-content select {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+  }
+
+  .modal-content button {
+    margin: 5px;
+    padding: 10px 20px;
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    cursor: pointer;
+  }
+
+  .modal-content button:hover {
+    background-color: #0056b3;
+  }
+
+  .hidden {
+    display: none;
+  }
+
+  #view-customers-button {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+#view-customers-button:hover {
+    background-color: #0056b3;
+}
+#customer-modal .modal-content {
+    max-height: 70vh;
+    overflow-y: auto;
+}
+
+#customer-list {
+    list-style-type: none;
+    padding: 0;
+}
+
+#customer-list li {
+    margin: 10px 0;
+    padding: 10px;
+    background-color: #f4f4f4;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.modal-content ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.modal-content li {
+    margin-bottom: 10px;
+    padding: 5px;
+    background-color: #f9f9f9;
+    border-radius: 4px;
+}
+
+.modal-content li ul {
+    margin-top: 5px;
+    padding-left: 20px;
+    list-style-type: circle;
+}
+
+#logout-button {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    padding: 10px 20px;
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s ease;
+}
+
+#logout-button:hover {
+    background-color: #0056b3;
+}
+
+#logout-button {
+    position: fixed;
+    top: 10px;
+    right: 10px;
+}
+
+#view-customers-button {
+    position: fixed;
+    top: 60px;
+    right: 10px;
+}
+
+form {
+    border: 1px solid #ccc;
+    padding: 20px;
+    background: #fff;
+    margin: 10px auto;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+input {
+    margin: 10px 0;
+    padding: 10px;
+    width: 90%;
+}
+
+button {
+    padding: 10px 20px;
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    cursor: pointer;
+    margin-top: 10px;
+    width: auto;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+#prime-subscription {
+    border: 1px solid #ccc;
+    padding: 20px;
+    background-color: #fff;
+    margin: 20px auto;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    width: 80%;
+}
+
+#prime-subscription h2 {
+    color: #333;
+    margin-bottom: 10px;
+}
+
+#prime-subscription p {
+    color: #666;
+    font-size: 16px;
+}
+
+#prime-subscription button {
+    padding: 10px 20px;
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+#prime-subscription button:hover {
+    background-color: #0056b3;
+}
+
+/* Prime Active Yellow Box */
+.yellow-box {
+    background-color: #ffeb3b;
+    color: #333;
+    padding: 10px;
+    font-weight: bold;
+    text-align: center;
+    border-radius: 5px;
+    margin-top: 10px;
+}

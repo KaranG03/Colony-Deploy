@@ -27,17 +27,19 @@ public class SpringSecurity {
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
-                .authorizeHttpRequests((authz) -> authz
-                        .requestMatchers("/public/**").permitAll()
-                        .requestMatchers("/verification/**").permitAll()
-                        .requestMatchers("/api/payments/**").permitAll()// Allow access to /verification and its sub-paths
-                        .anyRequest().authenticated() // Secure all other endpoints
-                )
-                .csrf().disable() // Disable CSRF protection
-                .addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class); // Add JWT filter
+                .csrf().disable() // Disable CSRF protection for stateless APIs
+                .cors().and()
+                .authorizeHttpRequests(authz -> authz
+                                .requestMatchers("/css/**", "/js/**", "/"," /public/**").permitAll()
+                                .anyRequest().permitAll()
 
+                      // .anyRequest().authenticated() // Require authentication for other endpoints
+
+                )
+                .addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class); // Add JWT filter
         return http.build();
     }
+
 
     @Bean
     public AuthenticationManager authenticationManager(HttpSecurity http) throws Exception {

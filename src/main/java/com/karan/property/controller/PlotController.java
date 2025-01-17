@@ -3,6 +3,7 @@ package com.karan.property.controller;
 
 import com.karan.property.entity.Plot;
 import com.karan.property.entity.User;
+import com.karan.property.repository.UserRepo;
 import com.karan.property.service.CustomerService;
 import com.karan.property.service.PlotService;
 import com.karan.property.service.UserService;
@@ -22,6 +23,8 @@ public class PlotController {
 
     @Autowired
     private PlotService plotService;
+    @Autowired
+    private UserRepo userRepo;
 
     @Autowired
     private CustomerService customerService;
@@ -53,26 +56,34 @@ public class PlotController {
 
     @PutMapping("/edit-plot/{id}")
     public ResponseEntity<?> editPlotDetail(@RequestBody Plot newPlot, @PathVariable ObjectId id){
-        Optional<Plot> plotById = plotService.getPlotById(id);
-        plotById.get().setPlotNo(newPlot.getPlotNo());
-        plotById.get().setNote(newPlot.getNote());
-        plotById.get().setPrice(newPlot.getPrice());
-        plotById.get().setSold(newPlot.isSold());
-        plotById.get().setRegTo(newPlot.getRegTo());
-        plotById.get().setCustAadhar(newPlot.getCustAadhar());
-        plotById.get().setCustPhoneNum(newPlot.getCustPhoneNum());
-        plotById.get().setCustAdd(newPlot.getCustAdd());
-        if (newPlot.getOwner()!=null && newPlot.getOwner().length() !=0){
-            plotById.get().setOwner(newPlot.getOwner());
-            customerService.addPlot(plotById.get(),newPlot.getOwner());
-        }
-        plotService.save(plotById.get());
+        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        if (principal instanceof org.springframework.security.core.userdetails.UserDetails) {
+            String username = ((org.springframework.security.core.userdetails.UserDetails) principal).getUsername();
 
-        return new ResponseEntity<>(HttpStatus.OK);
+
+            Optional<Plot> plotById = plotService.getPlotById(id);
+            plotById.get().setPlotNo(newPlot.getPlotNo());
+            plotById.get().setNote(newPlot.getNote());
+            plotById.get().setPrice(newPlot.getPrice());
+            plotById.get().setSold(newPlot.isSold());
+            plotById.get().setRegTo(newPlot.getRegTo());
+            plotById.get().setCustAadhar(newPlot.getCustAadhar());
+            plotById.get().setCustPhoneNum(newPlot.getCustPhoneNum());
+            plotById.get().setCustAdd(newPlot.getCustAdd());
+            if (newPlot.getOwner() != null && newPlot.getOwner().length() != 0) {
+                plotById.get().setOwner(newPlot.getOwner());
+                customerService.addPlot(plotById.get(), newPlot.getOwner(),username);
+            }
+            plotService.save(plotById.get());
+            return new ResponseEntity<>(HttpStatus.OK);
+        }
+
+        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 
     }
 
     @GetMapping("/{id}")
+
     public ResponseEntity<?> getPlot(@PathVariable ObjectId id){
         try{
             return new ResponseEntity<>(plotService.getPlotById(id),HttpStatus.OK);

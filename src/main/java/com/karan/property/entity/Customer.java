@@ -1,6 +1,8 @@
 package com.karan.property.entity;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -22,6 +24,7 @@ import java.util.List;
 @AllArgsConstructor
 public class Customer {
     @Id
+    @JsonIgnore
     private ObjectId objectId;
     private String custName;
     private Long phNum;
@@ -31,4 +34,13 @@ public class Customer {
     private Long aadharNum;
     @DBRef
     private List<Plot> custPlots = new ArrayList<>();
+
+    @JsonProperty("id") // Rename the property to "id" in the JSON response
+    public String getId() {
+        return objectId != null ? objectId.toHexString() : null; // Convert ObjectId to a string
+    }
+
+    public void setId(ObjectId objectId) {
+        this.objectId = objectId;
+    }
 }

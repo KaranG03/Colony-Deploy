@@ -27,7 +27,7 @@ public class PlotService {
         Optional<Colony> colony = Optional.ofNullable(colonyService.getByName(colonyName));
         colony.ifPresent(value -> value.getPlots().add(plot));
         if(plot.getOwner()!=null && plot.getOwner().length()!=0) {
-            Customer cust = customerService.addPlot(plot, plot.getOwner());
+            Customer cust = customerService.addPlot(plot, plot.getOwner(),userName);
             customerService.addNerCustomer(cust);
         }
         colonyService.saveColony(colony.get(),userName);
