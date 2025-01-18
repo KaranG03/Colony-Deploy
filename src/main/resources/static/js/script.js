@@ -19,7 +19,7 @@ async function signUp() {
     const data = { username, password, mail: email };
 
     try {
-        const response = await fetch('http://localhost:8080/public/sign-up', {
+        const response = await fetch('https://colony-deploy-production.up.railway.app/public/sign-up', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(data),
