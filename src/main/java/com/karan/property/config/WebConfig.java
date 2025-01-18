@@ -18,7 +18,7 @@ public class WebConfig implements  WebMvcConfigurer{
             @Override
             public void addCorsMappings(CorsRegistry registry) {
                 registry.addMapping("/**") // Allow CORS for all endpoints
-                        .allowedOrigins("http://localhost:63342") // Allowed origins
+                        .allowedOrigins("https://colony-deploy-production.up.railway.app") // Allowed origins
                         .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS") // Allowed HTTP methods
                         .allowedHeaders("*") // Allow all headers
                         .allowCredentials(true); // Allow cookies/credentials
