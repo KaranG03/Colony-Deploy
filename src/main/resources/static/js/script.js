@@ -50,7 +50,7 @@ async function login() {
     const data = { username, password };
 
     try {
-        const response = await fetch('http://localhost:8080/public/login', {
+        const response = await fetch('https://colony-deploy-production.up.railway.app/public/login', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(data),
@@ -68,7 +68,7 @@ async function login() {
             document.getElementById('view-customers-button').classList.remove('hidden');
 
             // Fetch user profile to check prime status
-            const userResponse = await fetch('http://localhost:8080/user/prime-status', {
+            const userResponse = await fetch('https://colony-deploy-production.up.railway.app/user/prime-status', {
                 method: 'GET',
                 headers: {
                     'Authorization': `Bearer ${jwt}`,
@@ -119,7 +119,7 @@ async function initiatePayment() {
     }
 
     try {
-        const response = await fetch('http://localhost:8080/api/payments/create-order?amount=1&currency=INR', {
+        const response = await fetch('https://colony-deploy-production.up.railway.app/api/payments/create-order?amount=1&currency=INR', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -188,7 +188,7 @@ async function fetchColonies() {
     const token = localStorage.getItem('token');
 
     try {
-        const response = await fetch('http://localhost:8080/user', {
+        const response = await fetch('https://colony-deploy-production.up.railway.app/user', {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -232,7 +232,7 @@ async function fetchColonyDetails(colonyId) {
     const token = localStorage.getItem('token');
 
     try {
-        const response = await fetch('http://localhost:8080/user', {
+        const response = await fetch('https://colony-deploy-production.up.railway.app/user', {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -352,7 +352,7 @@ async function savePlotDetails() {
     };
 
     try {
-        const response = await fetch(`http://localhost:8080/plot/edit-plot/${selectedPlotId}`, {
+        const response = await fetch(`https://colony-deploy-production.up.railway.app/plot/edit-plot/${selectedPlotId}`, {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json',
@@ -405,7 +405,7 @@ async function createNewColony() {
     try {
         const token = localStorage.getItem('token');
 
-        const response = await fetch('http://localhost:8080/user', {
+        const response = await fetch('https://colony-deploy-production.up.railway.app/user', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -447,7 +447,7 @@ async function fetchAllCustomers() {
     const token = localStorage.getItem('token');
 
     try {
-        const response = await fetch('http://localhost:8080/user/all-cust', {
+        const response = await fetch('https://colony-deploy-production.up.railway.app/user/all-cust', {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -543,7 +543,7 @@ async function sendForgotPasswordRequest() {
     }
 
     try {
-        const response = await fetch('http://localhost:8080/public/forgot-password', {
+        const response = await fetch('https://colony-deploy-production.up.railway.app/public/forgot-password', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ username }),
@@ -574,7 +574,7 @@ async function verifyOTP() {
     }
 
     try {
-        const response = await fetch('http://localhost:8080/verification', {
+        const response = await fetch('https://colony-deploy-production.up.railway.app/verification', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ username, otp }),
@@ -605,7 +605,7 @@ async function resetPassword() {
     }
 
     try {
-        const response = await fetch(`http://localhost:8080/user/reset-password?username=${username}&newP=${newPassword}`, {
+        const response = await fetch(`https://colony-deploy-production.up.railway.app/user/reset-password?username=${username}&newP=${newPassword}`, {
             method: 'POST',
         });
 
