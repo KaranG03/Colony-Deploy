@@ -30,7 +30,7 @@ public class Customer {
     private Long phNum;
     private String address;
 
-    @Indexed(unique = true)
+    
     private Long aadharNum;
     @DBRef
     private List<Plot> custPlots = new ArrayList<>();
